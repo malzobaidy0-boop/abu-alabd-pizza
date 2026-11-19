@@ -96,7 +96,7 @@ h1 { font-size: clamp(2rem, 5vw, 3.7rem); line-height: 1.25; }
 .category-link .count { color: #fff1db; }
 .category-link:hover { box-shadow: 0 0 0 2px var(--accent); }
 .item-price { color: var(--accent); font-weight: 700; }
-[data-photo="pizza"] { --photo:url("images/pizza.webp"); }
+[data-photo="pizza"] { --photo:url("images/pizza.png"); }
 [data-photo="meat"] { --photo:url("images/meat.webp"); }
 [data-photo="cheese"] { --photo:url("images/cheese.webp"); }
 [data-photo="spinach"] { --photo:url("images/spinach.webp"); }
@@ -105,7 +105,6 @@ h1 { font-size: clamp(2rem, 5vw, 3.7rem); line-height: 1.25; }
 body {min-height:100vh;background:radial-gradient(ellipse at top right,#e9cb9e,transparent 60%),#f5e5cc}
 #hero {background:#321d17;text-align:center}
 #hero img {width:100%;height:clamp(10rem,46vw,22rem);object-fit:cover;object-position:center 40%;display:block}
-@media(min-width:720px){#hero img{object-fit:contain}}
 .intro,.section-heading{text-align:center}
 .item-grid li{box-shadow:0 3px 12px #5d371016;background:#fff6e6}
 .item-grid img{width:100%;aspect-ratio:1.65;object-fit:cover;border-radius:.65rem;display:block}
