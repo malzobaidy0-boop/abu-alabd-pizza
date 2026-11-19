@@ -1,5 +1,3 @@
-const STORE_NAME = "بيتزا ومنقوشة أبو العبد";
-
 const menu = [
   {
     id: "pizza",
@@ -79,18 +77,7 @@ const menu = [
   },
 ];
 
-const photos = {
-  "بيتزا خضار": "vegetable",
-  "بيتزا مرغريتا": "margherita",
-  "بيتزا بيبروني": "pepperoni",
-  "بيتزا هوت دوغ بالخضار": "hotdog",
-};
-
 const home = document.querySelector("#home");
-const hero = document.querySelector("#hero");
-const masthead = document.querySelector(".masthead");
-const backLink = document.querySelector(".back");
-const brandLink = document.querySelector(".brand");
 const category = document.querySelector("#category");
 const heading = document.querySelector("#category-title");
 const categories = document.querySelector("#categories");
@@ -98,13 +85,10 @@ const itemCount = document.querySelector("#item-count");
 const items = document.querySelector("#items");
 const numerals = new Intl.NumberFormat("ar-SA");
 
-let lastRenderedHash = null;
-
 function formatCount(number) {
   return numerals.format(number) + " أصناف";
 }
 
-categories.replaceChildren();
 for (const section of menu) {
   const link = document.createElement("a");
   link.className = "category-link";
@@ -121,38 +105,28 @@ for (const section of menu) {
 }
 
 function render(focusHeading = false) {
-  const currentHash = location.hash;
-  if (focusHeading && currentHash === lastRenderedHash) return;
-  lastRenderedHash = currentHash;
-
-  const section = menu.find(entry => "#" + entry.id === currentHash);
+  const section = menu.find(entry => "#" + entry.id === location.hash);
   home.hidden = Boolean(section);
-  hero.hidden = Boolean(section);
-  masthead.hidden = !section;
+  document.querySelector("#hero").hidden = Boolean(section);
   category.hidden = !section;
-  backLink.hidden = !section;
-
-  document.title = section
-    ? `${section.title} | ${STORE_NAME}`
-    : `${STORE_NAME} | قائمة الطعام`;
-
+  document.querySelector(".back").hidden = !section;
   if (section) {
     heading.textContent = section.title;
     itemCount.textContent = formatCount(section.items.length);
     items.replaceChildren();
     for (const item of section.items) {
       const card = document.createElement("li");
+      const title = document.createElement("h2");
+      title.textContent = item.name;
+      const photos = {"بيتزا خضار":"vegetable", "بيتزا مرغريتا":"margherita", "بيتزا بيبروني":"pepperoni", "بيتزا هوت دوغ بالخضار":"hotdog"};
       if (photos[item.name]) {
         const image = document.createElement("img");
         image.src = "images/" + photos[item.name] + ".webp";
         image.alt = "";
-        image.loading = "lazy";
         card.append(image);
       }
-      const title = document.createElement("h2");
-      title.textContent = item.name;
       card.append(title);
-      for (const [key, label] of [["small", "صغير"], ["medium", "وسط"], ["large", "كبير"]]) {
+      for (const [key, label] of [["small","صغير"], ["medium","وسط"], ["large","كبير"]]) {
         if (item[key] == null) continue;
         const row = document.createElement("div");
         row.className = "price-row";
@@ -166,29 +140,12 @@ function render(focusHeading = false) {
       items.append(card);
     }
   }
-
   if (focusHeading) {
     const activeHeading = section ? heading : document.querySelector("#home-title");
     activeHeading.focus({ preventScroll: true });
-    requestAnimationFrame(() => window.scrollTo(0, 0));
+    window.scrollTo(0, 0);
   }
 }
 
-function returnHome(event) {
-  event.preventDefault();
-  if (location.hash) {
-    try {
-      history.pushState(null, "", location.pathname + location.search);
-    } catch {
-      location.hash = "";
-    }
-  }
-  lastRenderedHash = null;
-  render(true);
-}
-
-backLink.addEventListener("click", returnHome);
-brandLink.addEventListener("click", returnHome);
 window.addEventListener("hashchange", () => render(true));
-window.addEventListener("popstate", () => render(true));
 render();

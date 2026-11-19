@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,33 +12,22 @@
   <script src="menu.js" defer></script>
 </head>
 <body>
-  <header class="masthead" hidden>
+  <header class="masthead">
     <div class="wrap">
-      <a class="brand" href="./">بيتزا ومنقوشة أبو العبد</a>
-      <div class="masthead-actions">
-        <a class="call-btn" href="tel:0510821915">اتصل بنا</a>
-        <a class="back" href="./" hidden>الرجوع للقائمة الرئيسية</a>
-      </div>
+      <a class="brand" href="#home">بيتزا ومنقوشة أبو العبد</a>
+      <a class="call" href="tel:+966510821915">اتصل بنا <bdi dir="ltr">0510821915</bdi></a>
+      <a class="back" href="#home" hidden>الرجوع للقائمة الرئيسية</a>
     </div>
   </header>
-
-  <div id="hero">
-    <img src="images/oven.webp" alt="بيتزا ومنقوشة أبو العبد">
-  </div>
-
+  <div id="hero"><img src="images/oven.webp" alt="بيتزا ومنقوشة أبو العبد"></div>
   <main class="wrap">
     <section id="home" aria-labelledby="home-title">
       <div class="intro">
         <h1 id="home-title" tabindex="-1">قائمة الطعام</h1>
         <p>اختر القسم لعرض الأصناف</p>
-        <div class="contact-bar">
-          <a class="call-btn" href="tel:0510821915">اتصل بنا</a>
-          <a class="phone-number" href="tel:0510821915" dir="ltr">0510821915</a>
-        </div>
       </div>
       <nav id="categories" class="category-grid" aria-label="أقسام القائمة"></nav>
     </section>
-
     <section id="category" aria-labelledby="category-title" hidden>
       <header class="section-heading">
         <h1 id="category-title" tabindex="-1"></h1>
@@ -47,15 +36,6 @@
       <ul class="item-grid" id="items"></ul>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <span class="footer-brand">بيتزا ومنقوشة أبو العبد</span>
-      <a class="footer-phone" href="tel:0510821915" dir="ltr">0510821915</a>
-      <a class="call-btn" href="tel:0510821915">اتصل بنا</a>
-    </div>
-  </footer>
-
   <noscript><p class="wrap">فعّل JavaScript لعرض قائمة الطعام.</p></noscript>
 </body>
 </html>
